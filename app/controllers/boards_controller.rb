@@ -1,8 +1,11 @@
 class BoardsController<ApplicationController
+    #set_target_boardが各アクションの呼び出しより前に実行されるように、「before_action」を設定
+    #only以降により、特定のアクションの時だけ実行される
     before_action :set_target_board, only: %i[show edit update destroy]
 
     def index
-        @boards =Board.all
+        #pageメソッドを呼ぶことにより、引数に指定したページに表示するデータだけを取得する。デフォルトでは１ページあたり２５件のデータを取得する。
+        @boards =Board.page(params[:page])
     end
 
     def new
@@ -38,6 +41,8 @@ class BoardsController<ApplicationController
         params.require(:board).permit(:name, :title, :body)
     end
 
+    #各アクションが呼び出される前に実行したいメソッドの定義
+    #他のメソッドからも参照できるように「@」つける
     def set_target_board
         @board = Board.find(params[:id])
     end
