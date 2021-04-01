@@ -1,6 +1,13 @@
-# ページネーションの日本語記述にするためのファイル
 ja:
+  # エラーメッセージのプロパティを日本語記述にするため
+  activerecord:
+    attributes:
+      board:
+        name: 名前
+        title: タイトル
+        body: 本文
   views:
+    # ページネーションを日本語記述にするため
     pagination:
       first: "最初"
       last: "最後"

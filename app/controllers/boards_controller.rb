@@ -9,14 +9,21 @@ class BoardsController<ApplicationController
     end
 
     def new
-        @board = Board.new
+        @board = Board.new(flash[:board])
     end
 
     def create
-        board = Board.create(board_params)
-        #値が参照されるまでセッションに保存される。一度参照されたら消える。リダイレクト先に渡す。
-        flash[:notice] = "「#{board.title}」の掲示板を作成しました"
-        redirect_to board
+        board = Board.new(board_params)
+        if board.save
+            #値が参照されるまでセッションに保存される。一度参照されたら消える。リダイレクト先に渡す。
+            flash[:notice] = "「#{board.title}」の掲示板を作成しました"
+            redirect_to board
+        else
+            redirect_to new_board_path, flash: {
+                board: board,
+                error_messages: board.errors.full_messages
+            }
+        end
     end
 
     def show
