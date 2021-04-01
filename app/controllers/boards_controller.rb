@@ -9,7 +9,10 @@ class BoardsController<ApplicationController
 
     def create
         Board.create(board_params)
-        binding.pry
+    end
+
+    def show
+        @board = Board.find(params[:id])
     end
 
     private
