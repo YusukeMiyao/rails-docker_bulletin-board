@@ -5,4 +5,8 @@
   </div>
 </div>
 
+<% if flash[:notice] %>
+<%#「flash[:notice]」は app/conrollers/boards_controller.rbのcreateメソッドから持ってきたもの %>
+  <div class="alert alert-primary"><%= flash[:notice]%></div>
+<% end %>
 <%= render @board %>

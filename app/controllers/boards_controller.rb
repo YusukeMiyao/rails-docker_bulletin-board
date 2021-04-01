@@ -14,6 +14,8 @@ class BoardsController<ApplicationController
 
     def create
         board = Board.create(board_params)
+        #値が参照されるまでセッションに保存される。一度参照されたら消える。リダイレクト先に渡す。
+        flash[:notice] = "「#{board.title}」の掲示板を作成しました"
         redirect_to board
     end
 
@@ -31,8 +33,7 @@ class BoardsController<ApplicationController
 
     def destroy
         @board.delete
-
-        redirect_to boards_path
+        redirect_to boards_path,flash: { notice: "「#{@board.title}」の掲示板が削除されました。"}
     end
 
     private
