@@ -37,6 +37,9 @@ gem 'mini_racer'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  #binding.pryで止めた時にリクエストパラメータを見やすくしてたり、dbからのクエリを整形してくれるgem
+  #railsの環境で「flog」をrequireするよう指定している。gemの名前と、読み込むライブラリ名が異なるときは、指定する。
+  gem 'rails-flog', require:'flog'
 end
 
 group :development do
@@ -47,6 +50,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
+  #各モデルのスキーマ情報をapp/models/board.rbファイルの先頭もしくは末尾にコメントとして書き出してくれるGem
   gem 'annotate'
 end
 

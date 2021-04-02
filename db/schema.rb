@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210331030008) do
+ActiveRecord::Schema.define(version: 20210402013447) do
 
   create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
@@ -20,4 +20,14 @@ ActiveRecord::Schema.define(version: 20210331030008) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "board_id"
+    t.string   "name"
+    t.text     "comment",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["board_id"], name: "index_comments_on_board_id", using: :btree
+  end
+
+  add_foreign_key "comments", "boards"
 end
