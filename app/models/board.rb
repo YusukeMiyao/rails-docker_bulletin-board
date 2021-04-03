@@ -11,7 +11,10 @@
 #
 class Board < ApplicationRecord
   #Boardに関連する複数のコメントをboardモデルのオブジェクトから取得できるようになる
-  has_many :comments
+  #「dependent:訳’依存’」
+  has_many :comments, dependent: :delete_all
+  has_many :board_tag_relations, dependent: :delete_all
+  has_many :tags, through: :board_tag_relations
 
   #「presence:true」で、値入力必須にする
   validates :name, presence: true, length: { maximum: 10 }
