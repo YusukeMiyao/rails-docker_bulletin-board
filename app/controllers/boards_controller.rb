@@ -4,8 +4,9 @@ class BoardsController<ApplicationController
     before_action :set_target_board, only: %i[show edit update destroy]
 
     def index
+        @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
         #pageメソッドを呼ぶことにより、引数に指定したページに表示するデータだけを取得する。デフォルトでは１ページあたり２５件のデータを取得する。
-        @boards =Board.page(params[:page])
+        @boards = @boards.page(params[:page])
     end
 
     def new
@@ -52,7 +53,7 @@ class BoardsController<ApplicationController
     private
 
     def board_params
-        params.require(:board).permit(:name, :title, :body)
+        params.require(:board).permit(:name, :title, :body, tag_ids: [])
     end
 
     #各アクションが呼び出される前に実行したいメソッドの定義
