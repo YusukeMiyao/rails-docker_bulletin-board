@@ -24,5 +24,5 @@ class User < ApplicationRecord
       message: 'は小文字英数字で入力してください'
     }
   validates :password,
-    length: { maximum: 8 }
+    length: { minimum: 8 }
 end
