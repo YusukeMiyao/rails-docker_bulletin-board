@@ -41,6 +41,7 @@ group :development, :test do
   #railsの環境で「flog」をrequireするよう指定している。gemの名前と、読み込むライブラリ名が異なるときは、指定する。
   gem 'rails-flog', require:'flog'
   gem 'rspec-rails', '~> 3.8'
+  gem 'rails-controller-testing'
 end
 
 group :development do
