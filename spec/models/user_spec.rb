@@ -13,11 +13,16 @@
 #
 #  index_users_on_name  (name) UNIQUE
 #
+require 'rails_helper'
 
-one:
-  name: MyString
-  password_digest: MyString
+RSpec.describe User, type: :model do
+  describe '#age' do
+    context '20年前の生年月日の場合' do
+      let(:user) { User.new(birthday: Time.zone.now - 20.years)}
 
-two:
-  name: MyString
-  password_digest: MyString
+      it '年齢が20歳であること' do
+        expect(user.age).to eq 20
+      end
+    end
+  end
+end

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '5.2.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
@@ -40,6 +40,7 @@ group :development, :test do
   #binding.pryで止めた時にリクエストパラメータを見やすくしてたり、dbからのクエリを整形してくれるgem
   #railsの環境で「flog」をrequireするよう指定している。gemの名前と、読み込むライブラリ名が異なるときは、指定する。
   gem 'rails-flog', require:'flog'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
